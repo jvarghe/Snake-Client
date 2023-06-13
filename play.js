@@ -62,6 +62,12 @@ const connect = function() {
   // Interpret data incoming from the server as UTF-8 text.
   serverConnection.setEncoding("utf8");
 
+
+  // Log incoming messages from the server to console:
+  serverConnection.on("data", (data) => {
+    console.log("Server says: ", data);
+  });
+
   return serverConnection;
 };
 
@@ -69,5 +75,6 @@ const connect = function() {
 // Initiate a connection to the game server.
 console.log("Connecting ...");
 connect();
+
 
 
