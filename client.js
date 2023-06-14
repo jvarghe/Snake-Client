@@ -45,6 +45,12 @@ const net = require("net");
 // represents the connection between client and server.
 const connect = function() {
 
+  // Just above the snake, the server can print three (and only three)
+  // alphanumeric characters that represent your name. Perhaps you could enter
+  // your initials?
+  const initials = "JGV";
+
+  
   // Create a `serverConnection` object that contains the IP address and port
   // details. This object is full of useful methods and properties that can now
   // be used to interact with the server! `serverConnection` is an instance of
@@ -54,11 +60,26 @@ const connect = function() {
     port: 50541,
   });
 
+
   // Interpret data incoming from the server as UTF-8 text.
   serverConnection.setEncoding("utf8");
 
 
-  // Log incoming messages from the server to console:
+  // Event: Connection to Server
+  // Response: Log message to console informing user.
+  serverConnection.on("connect", (connectionMessage) => {
+
+    // Action: Inform the client that you have connected to the server.
+    console.log("Successfully connected to Snake game server!");
+
+    // Action: Tell the server your name so that it can be displayed next to
+    // the snake's image.
+    serverConnection.write("Name: " + initials);
+  });
+
+
+  // Event: Incoming Data
+  // Response: Log incoming messages from the server to console:
   serverConnection.on("data", (data) => {
     console.log("Server says: ", data);
   });
