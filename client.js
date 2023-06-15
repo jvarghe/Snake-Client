@@ -50,7 +50,7 @@ const connect = function() {
   // your initials?
   const initials = "JGV";
 
-  
+
   // Create a `serverConnection` object that contains the IP address and port
   // details. This object is full of useful methods and properties that can now
   // be used to interact with the server! `serverConnection` is an instance of
@@ -65,28 +65,63 @@ const connect = function() {
   serverConnection.setEncoding("utf8");
 
 
-  // Event: Connection to Server
-  // Response: Log message to console informing user.
-  serverConnection.on("connect", (connectionMessage) => {
-
-    // Action: Inform the client that you have connected to the server.
+  // Event: On (Re-)Connecting to the Server, Do These Things:
+  serverConnection.on("connect", (connectHandlerCB = () => {
     console.log("Successfully connected to Snake game server!");
 
+    // Action: Testing to see what would happen if we sent "Move" messages to
+    // the server immediately after connecting. Then we tried using `setTimeout()`
+    // and `setInterval()` between two move commands to see the effect it would
+    // have.
+    //
+    // serverConnection.write("Move: up");
+    // setInterval(() => {
+    //   serverConnection.write("Move: up");
+    // }, 50);
+
+  }) => {
+
+    // Action: First things first! As soon as you are connected, inform the
+    // client that you have connected to the server.
+    connectHandlerCB();
+
+
     // Action: Tell the server your name so that it can be displayed next to
-    // the snake's image.
+    // the snake's image (You can do this by sending the server this piece of
+    // text: `Name: XXX`, XXX is any three alphanumeric letters).
+    //
+    // `serverConnection.write()` is the method you use to "write data to a
+    // connection".
     serverConnection.write("Name: " + initials);
-  });
 
 
-  // Event: Incoming Data
-  // Response: Log incoming messages from the server to console:
-  serverConnection.on("data", (data) => {
-    console.log("Server says: ", data);
+    // Event: Incoming Data
+    // Response: Log incoming messages from the server to console:
+    serverConnection.on("data", (data) => {
+      console.log("Server says: ", data);
+    });
+
+
+    /* Supported Move Commands for a snake:
+     *
+     *  * "Move: up" - move up one square (unless facing down)
+     *  * "Move: down" - move down one square (unless facing up)
+     *  * "Move: left" - move left one square (unless facing right)
+     *  * "Move: right" - move left one square (unless facing left)
+     *
+     * Snakes cannot instantly make a 180 turn by moving in the opposite
+     * direction.
+     */
+
   });
+
 
   return serverConnection;
 };
 
+
+
+// EXPORTS
 /* OBJECT DESTRUCTING
  *
  * Using Object Destructing to populate the `module.exports` object.
@@ -106,4 +141,4 @@ const connect = function() {
  *
  *    const { name, realName } = hero;
  */
-module.exports = { connect } ;
+module.exports = { connect };
