@@ -26,9 +26,9 @@ const PORT = 50541;
 
 
 const cannedMessages = {
-  "1" : "Say: Ha Ha!",
-  "2" : "Say: Tasty!",
-  "3" : "Say: GG!"
+  "1": "Say: Ha Ha!",
+  "2": "Say: Tasty!",
+  "3": "Say: GG!"
 };
 
 

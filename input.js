@@ -32,7 +32,9 @@
 
 
 // IMPORTS
-const { connect } = require("./client.js");
+// The program works without importing `connect()` from `client.js`. How is
+// the `serverConnection` being imported without it?
+// const { connect } = require("./client.js");
 const { cannedMessages } = require("./constants.js");
 
 

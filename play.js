@@ -4,7 +4,17 @@
  * in client terminal, not the server one.
  *
  * This file, `play.js`, will serve as the main file through which we will
- * launch the game client.
+ * launch the game client. To run the program, run this command: `node play.js`.
+ *
+ *
+ * UNANSWERED QUESTIONS
+ *
+ *   1. In `input.js`, you need to import the `serverConnection` object from
+ *      `client.js`, so that you can use it in `handleUserInput()`. But, if
+ *      you delete in the import statement pulling in the `connect()` function,
+ *      `serverConnection` continues to work in `input.js`. In fact, this
+ *      object (`serverConnection`) is not assigned to anything in `input.js`.
+ *      How then, does `input.js` know to which object it is referring?
  */
 
 // IMPORTS
