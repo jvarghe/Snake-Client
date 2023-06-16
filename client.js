@@ -54,7 +54,7 @@ const connect = function() {
   // Just above the snake, the server can print three (and only three)
   // alphanumeric characters that represent your name. Perhaps you could enter
   // your initials?
-  const initials = "JGV";
+  const initials = "XYZ";
 
 
   // Create a `serverConnection` object that contains the IP address and port

@@ -21,8 +21,8 @@
  *        send the value as the message string.
  */
 
-const IP = "localhost";
-const PORT = 50541;
+const IP = "localhost";   // Keep as `localhost` or write in your IP address.
+const PORT = 12345;       // Replace with your computer's port.
 
 
 const cannedMessages = {
