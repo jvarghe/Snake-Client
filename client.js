@@ -1,4 +1,8 @@
-/*
+/* CLIENT MODULE
+ *
+ * This module handles the client program's connection to the server program.
+ *
+ *
  * ABOUT EVENTS
  *
  * When you connect to a server, or when it closes its connection with you,
@@ -37,7 +41,9 @@
  */
 
 
+// IMPORTS
 const net = require("net");
+const { IP, PORT } = require("./constants.js");
 
 
 // This function establishes a connection to the game server
@@ -56,8 +62,8 @@ const connect = function() {
   // be used to interact with the server! `serverConnection` is an instance of
   // the Socket class.
   const serverConnection = net.createConnection({
-    host: "localhost",
-    port: 50541,
+    host: IP,
+    port: PORT,
   });
 
 
