@@ -31,6 +31,11 @@
  */
 
 
+// IMPORTS
+const { connect } = require("./client.js");
+const { cannedMessages } = require("./constants.js");
+
+
 // Stores the active TCP connection object (from `client.js`).
 let serverConnection;
 
@@ -107,20 +112,27 @@ const handleUserInput = function(userCommand) {
 
 
   // Canned Messages/Taunts:
+  // Importing the `cannedMessages` object from `constants.js` and pulling
+  // all canned messages from there, instead of using the if-statement blocks
+  // below.
+  if (cannedMessages[userCommand]) {
+    serverConnection.write(cannedMessages[userCommand]);
+  }
+
   // If `1` is pressed:
-  if (userCommand === "1") {
-    serverConnection.write("Say: Ha Ha!");
-  }
+  // if (userCommand === "1") {
+  //   serverConnection.write("Say: Ha Ha!");
+  // }
 
-  // If `2` is pressed:
-  if (userCommand === "2") {
-    serverConnection.write("Say: Tasty!");
-  }
+  // // If `2` is pressed:
+  // if (userCommand === "2") {
+  //   serverConnection.write("Say: Tasty!");
+  // }
 
-  // If `3` is pressed:
-  if (userCommand === "3") {
-    serverConnection.write("Say: GG!");
-  }
+  // // If `3` is pressed:
+  // if (userCommand === "3") {
+  //   serverConnection.write("Say: GG!");
+  // }
 
 };
 
