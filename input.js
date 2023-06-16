@@ -105,6 +105,23 @@ const handleUserInput = function(userCommand) {
     serverConnection.write("Move: right");
   }
 
+
+  // Canned Messages/Taunts:
+  // If `1` is pressed:
+  if (userCommand === "1") {
+    serverConnection.write("Say: Ha Ha!");
+  }
+
+  // If `2` is pressed:
+  if (userCommand === "2") {
+    serverConnection.write("Say: Tasty!");
+  }
+
+  // If `3` is pressed:
+  if (userCommand === "3") {
+    serverConnection.write("Say: GG!");
+  }
+
 };
 
 
