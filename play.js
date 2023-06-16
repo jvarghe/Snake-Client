@@ -1,11 +1,13 @@
 /* MO2 W05 CHALLENGE: SNAKE
  *
+ * NOTE: If you are playing the game, the keyboard commands are only accepted
+ * in client terminal, not the server one.
+ *
  * This file, `play.js`, will serve as the main file through which we will
  * launch the game client.
  */
 
 // IMPORTS
-const net = require("net");
 const { connect } = require("./client.js");
 const { setupInput } = require("./input.js");
 
@@ -16,8 +18,9 @@ const { setupInput } = require("./input.js");
 console.log("Connecting ...");
 
 // Initiate a connection to the game server.
-connect();
+const connectionObj = connect();
 
 // Call `setupInput()` to create an object that will track user input from the
-// keyboard.
-setupInput();
+// keyboard. Pass in `connectionObj` so that your input module (`input.js`) can
+// send messages to the server.
+setupInput(connectionObj);
